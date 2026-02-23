@@ -1,0 +1,204 @@
+/* ============================================
+   SCRIPT — Agustín Haag Landing Page
+   ============================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initNavbar();
+  initSmoothScroll();
+  initFAQ();
+  initForm();
+  initScrollAnimations();
+});
+
+/* --- Navbar --- */
+function initNavbar() {
+  const navbar = document.getElementById('navbar');
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+
+  // Scroll effect
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Hamburger toggle
+  hamburger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close on link click
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!navbar.contains(e.target)) {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+/* --- Smooth Scroll --- */
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const targetId = anchor.getAttribute('href');
+      if (targetId === '#') return;
+
+      e.preventDefault();
+      const target = document.querySelector(targetId);
+      if (target) {
+        const navbarHeight = document.getElementById('navbar').offsetHeight;
+        const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      }
+    });
+  });
+}
+
+/* --- FAQ Accordion --- */
+function initFAQ() {
+  const items = document.querySelectorAll('.faq__item');
+
+  items.forEach(item => {
+    const question = item.querySelector('.faq__question');
+
+    question.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      // Close all
+      items.forEach(i => {
+        i.classList.remove('active');
+        i.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
+      });
+
+      // Open clicked if it wasn't active
+      if (!isActive) {
+        item.classList.add('active');
+        question.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+}
+
+/* --- Form Validation & WhatsApp --- */
+function initForm() {
+  const form = document.getElementById('quoteForm');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Clear previous errors
+    form.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
+
+    // Gather values
+    const nombre = document.getElementById('nombre').value.trim();
+    const edad = document.getElementById('edad').value.trim();
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+    const condicion = document.getElementById('condicion').value;
+    const interes = document.getElementById('interes').value;
+
+    // Validate
+    let hasError = false;
+
+    if (!nombre) {
+      document.getElementById('nombre').closest('.form-group').classList.add('error');
+      hasError = true;
+    }
+    if (!edad || edad < 0 || edad > 120) {
+      document.getElementById('edad').closest('.form-group').classList.add('error');
+      hasError = true;
+    }
+    if (!whatsapp || whatsapp.length < 8) {
+      document.getElementById('whatsapp').closest('.form-group').classList.add('error');
+      hasError = true;
+    }
+    if (!condicion) {
+      document.getElementById('condicion').closest('.form-group').classList.add('error');
+      hasError = true;
+    }
+    if (!interes) {
+      document.getElementById('interes').closest('.form-group').classList.add('error');
+      hasError = true;
+    }
+
+    if (hasError) return;
+
+    // --- Send data to Google Sheets silently (placeholder) ---
+    sendToGoogleSheets({ nombre, edad, whatsapp, condicion, interes });
+
+    // --- Open WhatsApp with pre-filled message ---
+    const message = encodeURIComponent(
+      `¡Hola Agustín! 👋\n\n` +
+      `Me gustaría cotizar una cobertura médica. Estos son mis datos:\n\n` +
+      `📋 *Nombre:* ${nombre}\n` +
+      `🎂 *Edad:* ${edad} años\n` +
+      `📱 *WhatsApp:* ${whatsapp}\n` +
+      `💼 *Condición laboral:* ${condicion}\n` +
+      `🔍 *Interés:* ${interes}\n\n` +
+      `¡Espero tu respuesta! 😊`
+    );
+
+    // Agustín's WhatsApp number
+    const agustinWhatsApp = '542916453357';
+    const whatsappURL = `https://api.whatsapp.com/send?phone=${agustinWhatsApp}&text=${message}`;
+
+    window.open(whatsappURL, '_blank');
+  });
+}
+
+/**
+ * Sends form data to a Google Sheets endpoint silently.
+ * Replace GOOGLE_SHEETS_ENDPOINT with your actual Apps Script Web App URL.
+ */
+function sendToGoogleSheets(data) {
+  const GOOGLE_SHEETS_ENDPOINT = ''; // TODO: Add Google Apps Script URL
+
+  if (!GOOGLE_SHEETS_ENDPOINT) {
+    console.log('[INFO] Google Sheets endpoint not configured. Data:', data);
+    return;
+  }
+
+  fetch(GOOGLE_SHEETS_ENDPOINT, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      nombre: data.nombre,
+      edad: data.edad,
+      whatsapp: data.whatsapp,
+      condicion: data.condicion,
+      interes: data.interes,
+      fecha: new Date().toISOString(),
+    }),
+  }).catch(err => {
+    console.warn('[WARN] Error sending to Google Sheets:', err);
+  });
+}
+
+
+/* --- Scroll Animations (Intersection Observer) --- */
+function initScrollAnimations() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+  );
+
+  document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+}

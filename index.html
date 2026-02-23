@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Asesoramiento 100% gratuito y personalizado en prepagas y asistencia al viajero. Encontrá la cobertura médica ideal para vos y tu familia con Agustín Haag.">
+  <meta name="keywords"
+    content="prepaga, cobertura médica, asesor de prepagas, derivación de aportes, asistencia al viajero, Swiss Medical, Galeno, Medifé, Prevención Salud, Avalian">
+  <meta name="author" content="Agustín Haag">
+  <title>Agustín Haag — Asesor de Prepagas y Salud</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ============================================ -->
+  <!-- NAVBAR -->
+  <!-- ============================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="#" class="navbar__logo">
+        <span class="logo__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+          </svg>
+        </span>
+        Agustín Haag
+      </a>
+
+      <ul class="navbar__links" id="navLinks">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#sobre-mi">Sobre Mí</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#cotizar" class="btn btn--primary btn--sm">Cotizar ahora</a></li>
+      </ul>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Menú de navegación" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================ -->
+  <!-- HERO SECTION -->
+  <!-- ============================================ -->
+  <header class="hero" id="inicio">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <div class="hero__badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+          </svg>
+          Asesoramiento 100% gratuito
+        </div>
+        <h1>Encontrá la cobertura médica ideal para vos y tu familia, <span class="text-gradient">sin pagar de
+            más.</span></h1>
+        <p class="hero__subtitle">Asesoramiento 100% gratuito y personalizado en las mejores prepagas del país y
+          asistencia al viajero.</p>
+        <div class="hero__actions">
+          <a href="#cotizar" class="btn btn--primary btn--lg">
+            Cotizar mi cobertura
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href="#servicios" class="btn btn--ghost btn--lg">
+            Conocer servicios
+          </a>
+        </div>
+        <div class="hero__stats">
+          <div class="stat">
+            <strong>+500</strong>
+            <span>Familias asesoradas</span>
+          </div>
+          <div class="stat__divider"></div>
+          <div class="stat">
+            <strong>5</strong>
+            <span>Prepagas aliadas</span>
+          </div>
+          <div class="stat__divider"></div>
+          <div class="stat">
+            <strong>100%</strong>
+            <span>Gratuito</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__image">
+        <div class="hero__image-wrapper">
+          <img src="assets/agustin-haag.jpg" alt="Agustín Haag - Asesor de Prepagas" class="hero__photo">
+          <div class="hero__image-accent"></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero__bg-shape"></div>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- TRUST BADGES -->
+  <!-- ============================================ -->
+  <section class="trust" id="trust">
+    <div class="container">
+      <p class="trust__title">Trabajamos con las mejores prepagas del país</p>
+      <div class="trust__logos">
+        <div class="trust__logo">
+          <img src="assets/prevencion-salud.png" alt="Prevención Salud" loading="lazy">
+        </div>
+        <div class="trust__logo">
+          <img src="assets/medife.png" alt="Medifé" loading="lazy">
+        </div>
+        <div class="trust__logo">
+          <img src="assets/galeno.jpg" alt="Galeno" loading="lazy">
+        </div>
+        <div class="trust__logo">
+          <img src="assets/swiss-medical.png" alt="Swiss Medical" loading="lazy">
+        </div>
+        <div class="trust__logo">
+          <img src="assets/avalian.jpg" alt="Avalian" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SERVICIOS -->
+  <!-- ============================================ -->
+  <section class="services" id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Servicios</span>
+        <h2>Soluciones adaptadas a tu situación</h2>
+        <p>Sea cual sea tu condición laboral o destino de viaje, tengo una opción para vos.</p>
+      </div>
+
+      <div class="services__grid">
+        <!-- Card 1 -->
+        <div class="service-card" data-animate>
+          <div class="service-card__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="5" width="20" height="14" rx="2" />
+              <line x1="2" y1="10" x2="22" y2="10" />
+            </svg>
+          </div>
+          <h3>Derivación de Aportes</h3>
+          <p>Aprovechá tus aportes de recibo de sueldo o Monotributo para pagar menos tu prepaga mes a mes.</p>
+          <a href="#cotizar" class="service-card__link">
+            Consultá ahora
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card" data-animate>
+          <div class="service-card__icon service-card__icon--alt">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <line x1="19" y1="8" x2="19" y2="14" />
+              <line x1="22" y1="11" x2="16" y2="11" />
+            </svg>
+          </div>
+          <h3>Planes Particulares</h3>
+          <p>Opciones a medida si trabajás de forma independiente y buscás la mejor relación calidad-precio.</p>
+          <a href="#cotizar" class="service-card__link">
+            Consultá ahora
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card" data-animate>
+          <div class="service-card__icon service-card__icon--accent">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+          </div>
+          <h3>Asistencia al Viajero</h3>
+          <p>Viajá tranquilo con coberturas médicas internacionales adaptadas a tu destino y tipo de viaje.</p>
+          <a href="#cotizar" class="service-card__link">
+            Consultá ahora
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SOBRE MÍ -->
+  <!-- ============================================ -->
+  <section class="about" id="sobre-mi">
+    <div class="container about__inner">
+      <div class="about__image" data-animate>
+        <div class="about__image-wrapper">
+          <img src="assets/agustin-haag.jpg" alt="Agustín Haag - Visitador Médico y Asesor Comercial"
+            class="about__photo">
+        </div>
+      </div>
+      <div class="about__content" data-animate>
+        <span class="section-tag">Sobre mí</span>
+        <h2>Tu salud en manos de un profesional</h2>
+        <p class="about__text">Soy Agustín Haag, Visitador Médico y Asesor Comercial. Mi objetivo no es "venderte" un
+          plan, sino entender tu situación médica y económica para filtrarte las mejores opciones del mercado. Te
+          acompaño en todo el trámite administrativo para que no tengas que estresarte.</p>
+
+        <div class="about__features">
+          <div class="about__feature">
+            <div class="about__feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <div>
+              <strong>Asesoramiento gratuito</strong>
+              <span>Sin costo alguno para vos</span>
+            </div>
+          </div>
+          <div class="about__feature">
+            <div class="about__feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <div>
+              <strong>Acompañamiento personalizado</strong>
+              <span>Soluciones a tu medida</span>
+            </div>
+          </div>
+          <div class="about__feature">
+            <div class="about__feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <div>
+              <strong>Trámites sin estrés</strong>
+              <span>Yo me encargo de todo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- FORMULARIO DE COTIZACIÓN -->
+  <!-- ============================================ -->
+  <section class="quote" id="cotizar">
+    <div class="container quote__inner">
+      <div class="quote__info" data-animate>
+        <span class="section-tag section-tag--light">Cotización gratuita</span>
+        <h2>Solicitá tu cotización gratuita</h2>
+        <p>Completá el formulario y en minutos te contactamos con las mejores opciones del mercado. Sin compromiso, sin
+          letra chica.</p>
+
+        <div class="quote__benefits">
+          <div class="quote__benefit">
+            <div class="quote__benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <div>
+              <strong>Respuesta inmediata</strong>
+              <span>Te contactamos por WhatsApp al instante</span>
+            </div>
+          </div>
+          <div class="quote__benefit">
+            <div class="quote__benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <div>
+              <strong>Datos protegidos</strong>
+              <span>Tu información es confidencial</span>
+            </div>
+          </div>
+          <div class="quote__benefit">
+            <div class="quote__benefit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+            </div>
+            <div>
+              <strong>Sin compromiso</strong>
+              <span>Cotizá sin ninguna obligación</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote__form-wrapper" data-animate>
+        <form class="quote__form" id="quoteForm" novalidate>
+          <div class="form-group">
+            <label for="nombre">Nombre y Apellido</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+            <span class="form-error">Por favor ingresá tu nombre</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edad">Edad</label>
+              <input type="number" id="edad" name="edad" placeholder="Ej: 35" min="0" max="120" required>
+              <span class="form-error">Ingresá tu edad</span>
+            </div>
+            <div class="form-group">
+              <label for="whatsapp">WhatsApp</label>
+              <div class="input-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                <input type="tel" id="whatsapp" name="whatsapp" placeholder="Ej: 3515551234" required>
+              </div>
+              <span class="form-error">Ingresá tu WhatsApp</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="condicion">Condición Laboral</label>
+            <select id="condicion" name="condicion" required>
+              <option value="" disabled selected>Seleccioná una opción</option>
+              <option value="Relación de Dependencia">Relación de Dependencia</option>
+              <option value="Monotributista">Monotributista</option>
+              <option value="Particular">Particular</option>
+            </select>
+            <span class="form-error">Seleccioná tu condición laboral</span>
+          </div>
+
+          <div class="form-group">
+            <label for="interes">¿Qué buscás?</label>
+            <select id="interes" name="interes" required>
+              <option value="" disabled selected>Seleccioná una opción</option>
+              <option value="Prepaga">Prepaga</option>
+              <option value="Asistencia al Viajero">Asistencia al Viajero</option>
+            </select>
+            <span class="form-error">Seleccioná qué estás buscando</span>
+          </div>
+
+          <button type="submit" class="btn btn--whatsapp btn--lg" id="submitBtn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            Enviar y cotizar por WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- FAQ -->
+  <!-- ============================================ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">FAQ</span>
+        <h2>Preguntas Frecuentes</h2>
+        <p>Respondemos las dudas más comunes sobre nuestro servicio de asesoramiento.</p>
+      </div>
+
+      <div class="faq__list">
+        <div class="faq__item active" data-animate>
+          <button class="faq__question" aria-expanded="true">
+            <span>¿Tu asesoramiento tiene algún costo?</span>
+            <div class="faq__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </div>
+          </button>
+          <div class="faq__answer">
+            <p>No, mi servicio es 100% gratuito para vos. Las empresas de medicina prepaga son las que cubren mis
+              honorarios por la gestión.</p>
+          </div>
+        </div>
+
+        <div class="faq__item" data-animate>
+          <button class="faq__question" aria-expanded="false">
+            <span>¿Puedo cambiarme de prepaga si tengo una enfermedad preexistente?</span>
+            <div class="faq__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </div>
+          </button>
+          <div class="faq__answer">
+            <p>Sí, por ley podés cambiarte. Evaluaremos juntos qué cobertura acepta tu preexistencia con las mejores
+              condiciones.</p>
+          </div>
+        </div>
+
+        <div class="faq__item" data-animate>
+          <button class="faq__question" aria-expanded="false">
+            <span>¿Cómo es el trámite de derivación de aportes?</span>
+            <div class="faq__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </div>
+          </button>
+          <div class="faq__answer">
+            <p>Es un trámite sencillo y online. Yo me encargo de guiarte paso a paso para que tus aportes de obra social
+              se deriven directamente al pago de tu nueva prepaga.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- FOOTER -->
+  <!-- ============================================ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#" class="navbar__logo">
+          <span class="logo__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+            </svg>
+          </span>
+          Agustín Haag
+        </a>
+        <p>Asesor Comercial de Prepagas y Salud. Tu cobertura médica ideal, sin pagar de más.</p>
+      </div>
+
+      <div class="footer__links">
+        <h4>Enlaces</h4>
+        <ul>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#sobre-mi">Sobre Mí</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#cotizar">Cotizar</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__social">
+        <h4>Contacto</h4>
+        <div class="footer__social-icons">
+          <a href="#" aria-label="Instagram" class="social-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8a4 4 0 0 1 3.37 3.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </a>
+          <a href="#" aria-label="LinkedIn" class="social-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+          </a>
+          <a href="#" aria-label="WhatsApp" class="social-icon social-icon--wa">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container">
+        <p>&copy; 2026 Agustín Haag. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://api.whatsapp.com/send?phone=542916453357" target="_blank" class="floating-whatsapp"
+    aria-label="Contactar por WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
