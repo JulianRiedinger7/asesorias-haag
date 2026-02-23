@@ -686,6 +686,7 @@ h3 {
   padding: var(--section-py) 0;
   background: var(--bg-quote);
   color: #fff;
+  overflow: hidden;
 }
 
 .quote__inner {
@@ -748,6 +749,8 @@ h3 {
   border-radius: var(--radius-xl);
   padding: 2.5rem;
   box-shadow: var(--shadow-xl);
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .quote__form {
@@ -766,6 +769,7 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  min-width: 0;
 }
 
 .form-group label {
@@ -1202,6 +1206,10 @@ h3 {
     flex-wrap: wrap;
   }
 
+  .hero__image-accent {
+    display: none;
+  }
+
   /* Services */
   .services__grid {
     grid-template-columns: 1fr;
@@ -1223,7 +1231,11 @@ h3 {
   }
 
   .quote__form-wrapper {
-    padding: 1.75rem;
+    padding: 1.25rem;
+  }
+
+  .quote__inner {
+    gap: 2rem;
   }
 
   /* Footer */
