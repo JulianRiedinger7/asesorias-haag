@@ -1245,12 +1245,13 @@ h3 {
   }
 
   .trust__logo {
+    width: calc(100vw / 3);
     height: 60px;
   }
 
   .trust__logo img {
     height: 50px;
-    max-width: 130px;
+    max-width: 85%;
   }
 
   /* Form */
