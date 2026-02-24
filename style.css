@@ -1291,4 +1291,8 @@ h3 {
   .btn--lg {
     padding: 0.85rem 1.5rem;
   }
+
+  .btn--whatsapp svg {
+    display: none;
+  }
 }
