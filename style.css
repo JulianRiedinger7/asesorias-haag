@@ -194,6 +194,22 @@ h3 {
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
 }
 
+.btn--submit {
+  background: var(--primary-gradient);
+  color: #fff;
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 14px rgba(19, 182, 236, 0.3);
+  margin-top: 0.5rem;
+}
+
+.btn--submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(19, 182, 236, 0.45);
+}
+
 /* --- Section Header --- */
 .section-header {
   text-align: center;

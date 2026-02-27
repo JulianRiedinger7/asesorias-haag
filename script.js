@@ -94,6 +94,28 @@ function initFAQ() {
 function initForm() {
   const form = document.getElementById('quoteForm');
 
+  // Real-time: clear error when user interacts with a field
+  form.querySelectorAll('input, select').forEach(field => {
+    const event = field.tagName === 'SELECT' ? 'change' : 'input';
+    field.addEventListener(event, () => {
+      field.closest('.form-group').classList.remove('error');
+    });
+  });
+
+  // Prevent non-numeric input in phone field
+  const whatsappInput = document.getElementById('whatsapp');
+  whatsappInput.addEventListener('input', () => {
+    whatsappInput.value = whatsappInput.value.replace(/[^0-9]/g, '');
+  });
+
+  // Prevent negative and decimal in age field
+  const edadInput = document.getElementById('edad');
+  edadInput.addEventListener('input', () => {
+    let val = edadInput.value.replace(/[^0-9]/g, '');
+    if (val && parseInt(val) > 120) val = '120';
+    edadInput.value = val;
+  });
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -102,24 +124,37 @@ function initForm() {
 
     // Gather values
     const nombre = document.getElementById('nombre').value.trim();
-    const edad = document.getElementById('edad').value.trim();
+    const email = document.getElementById('email').value.trim();
     const whatsapp = document.getElementById('whatsapp').value.trim();
+    const edad = document.getElementById('edad').value.trim();
+    const cobertura = document.getElementById('cobertura').value;
     const condicion = document.getElementById('condicion').value;
     const interes = document.getElementById('interes').value;
 
     // Validate
     let hasError = false;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneDigits = whatsapp.replace(/[^0-9]/g, '');
+    const edadNum = parseInt(edad, 10);
 
-    if (!nombre) {
+    if (!nombre || nombre.length < 2) {
       document.getElementById('nombre').closest('.form-group').classList.add('error');
       hasError = true;
     }
-    if (!edad || edad < 0 || edad > 120) {
+    if (!email || !emailRegex.test(email)) {
+      document.getElementById('email').closest('.form-group').classList.add('error');
+      hasError = true;
+    }
+    if (!whatsapp || phoneDigits.length < 8) {
+      document.getElementById('whatsapp').closest('.form-group').classList.add('error');
+      hasError = true;
+    }
+    if (!edad || isNaN(edadNum) || edadNum < 1 || edadNum > 120) {
       document.getElementById('edad').closest('.form-group').classList.add('error');
       hasError = true;
     }
-    if (!whatsapp || whatsapp.length < 8) {
-      document.getElementById('whatsapp').closest('.form-group').classList.add('error');
+    if (!cobertura) {
+      document.getElementById('cobertura').closest('.form-group').classList.add('error');
       hasError = true;
     }
     if (!condicion) {
@@ -131,20 +166,29 @@ function initForm() {
       hasError = true;
     }
 
-    if (hasError) return;
+    if (hasError) {
+      // Scroll to first error
+      const firstError = form.querySelector('.form-group.error');
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return;
+    }
 
     // --- Send data to Google Sheets silently (placeholder) ---
-    sendToGoogleSheets({ nombre, edad, whatsapp, condicion, interes });
+    sendToGoogleSheets({ nombre, email, whatsapp, edad, cobertura, condicion, interes });
 
     // --- Open WhatsApp with pre-filled message ---
     const message = encodeURIComponent(
       `¡Hola Agustín! 👋\n\n` +
-      `Me gustaría cotizar una cobertura médica. Estos son mis datos:\n\n` +
+      `Me gustaría cotizar una cobertura. Estos son mis datos:\n\n` +
       `📋 *Nombre:* ${nombre}\n` +
+      `📧 *Email:* ${email}\n` +
+      `📱 *Celular:* ${whatsapp}\n` +
       `🎂 *Edad:* ${edad} años\n` +
-      `📱 *WhatsApp:* ${whatsapp}\n` +
+      `👥 *Cobertura para:* ${cobertura}\n` +
       `💼 *Condición laboral:* ${condicion}\n` +
-      `🔍 *Interés:* ${interes}\n\n` +
+      `🔍 *Servicio de interés:* ${interes}\n\n` +
       `¡Espero tu respuesta! 😊`
     );
 
@@ -174,8 +218,10 @@ function sendToGoogleSheets(data) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       nombre: data.nombre,
-      edad: data.edad,
+      email: data.email,
       whatsapp: data.whatsapp,
+      edad: data.edad,
+      cobertura: data.cobertura,
       condicion: data.condicion,
       interes: data.interes,
       fecha: new Date().toISOString(),
