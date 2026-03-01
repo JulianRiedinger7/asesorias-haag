@@ -231,66 +231,6 @@
   </section>
 
   <!-- ============================================ -->
-  <!-- SOBRE MÍ -->
-  <!-- ============================================ -->
-  <section class="about" id="sobre-mi">
-    <div class="container about__inner">
-      <div class="about__image" data-animate>
-        <div class="about__image-wrapper">
-          <img src="assets/agustin-haag.jpg" alt="Agustín Haag - Visitador Médico y Asesor Comercial"
-            class="about__photo">
-        </div>
-      </div>
-      <div class="about__content" data-animate>
-        <span class="section-tag">Sobre mí</span>
-        <h2>Tu salud en manos de un profesional</h2>
-        <p class="about__text">Soy Agustín Haag, Visitador Médico y Asesor Comercial. Mi objetivo no es "venderte" un
-          plan, sino entender tu situación médica y económica para filtrarte las mejores opciones del mercado. Te
-          acompaño en todo el trámite administrativo para que no tengas que estresarte.</p>
-
-        <div class="about__features">
-          <div class="about__feature">
-            <div class="about__feature-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            </div>
-            <div>
-              <strong>Asesoramiento gratuito</strong>
-              <span>Sin costo alguno para vos</span>
-            </div>
-          </div>
-          <div class="about__feature">
-            <div class="about__feature-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            </div>
-            <div>
-              <strong>Acompañamiento personalizado</strong>
-              <span>Soluciones a tu medida</span>
-            </div>
-          </div>
-          <div class="about__feature">
-            <div class="about__feature-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            </div>
-            <div>
-              <strong>Trámites sin estrés</strong>
-              <span>Yo me encargo de todo</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
   <!-- FORMULARIO DE COTIZACIÓN -->
   <!-- ============================================ -->
   <section class="quote" id="cotizar">
@@ -368,7 +308,7 @@
             </div>
           </div>
 
-          <!-- Fila 2: WhatsApp + Edad -->
+          <!-- Fila 2: WhatsApp + Servicio de interés -->
           <div class="form-row">
             <div class="form-group">
               <label for="whatsapp">Celular / WhatsApp</label>
@@ -383,45 +323,22 @@
               <span class="form-error">Ingresá un número válido (solo números, mínimo 8 dígitos)</span>
             </div>
             <div class="form-group">
-              <label for="edad">Edad del titular</label>
-              <input type="number" id="edad" name="edad" placeholder="Ej: 35" min="1" max="120" required>
-              <span class="form-error">Ingresá una edad válida (entre 1 y 120)</span>
+              <label for="interes">Servicio de interés</label>
+              <select id="interes" name="interes" required>
+                <option value="" disabled selected>Seleccioná una opción</option>
+                <option value="Medicina Prepaga">Medicina Prepaga</option>
+                <option value="Asistencia al Viajero">Asistencia al Viajero</option>
+              </select>
+              <span class="form-error">Seleccioná el servicio que te interesa</span>
             </div>
           </div>
 
-          <!-- Fila 3: Cobertura + Condición Laboral -->
-          <div class="form-row">
-            <div class="form-group">
-              <label for="cobertura">¿Para quién es la cobertura?</label>
-              <select id="cobertura" name="cobertura" required>
-                <option value="" disabled selected>Seleccioná una opción</option>
-                <option value="Solo para mí">Solo para mí</option>
-                <option value="Matrimonio o Pareja">Matrimonio o Pareja</option>
-                <option value="Familia con hijos">Familia con hijos</option>
-              </select>
-              <span class="form-error">Seleccioná para quién es la cobertura</span>
-            </div>
-            <div class="form-group">
-              <label for="condicion">Condición Laboral</label>
-              <select id="condicion" name="condicion" required>
-                <option value="" disabled selected>Seleccioná una opción</option>
-                <option value="Relación de Dependencia">Relación de Dependencia</option>
-                <option value="Monotributo">Monotributo</option>
-                <option value="Particular (Sin aportes)">Particular (Sin aportes)</option>
-              </select>
-              <span class="form-error">Seleccioná tu condición laboral</span>
-            </div>
-          </div>
-
-          <!-- Fila 4: Servicio de interés (ancho completo) -->
+          <!-- Mensaje opcional -->
           <div class="form-group">
-            <label for="interes">Servicio de interés</label>
-            <select id="interes" name="interes" required>
-              <option value="" disabled selected>Seleccioná una opción</option>
-              <option value="Medicina Prepaga">Medicina Prepaga</option>
-              <option value="Asistencia al Viajero">Asistencia al Viajero</option>
-            </select>
-            <span class="form-error">Seleccioná el servicio que te interesa</span>
+            <label for="mensaje">Mensaje <span class="label-optional">(opcional)</span></label>
+            <textarea id="mensaje" name="mensaje"
+              placeholder="Contanos brevemente qué estás buscando o si tenés alguna consulta particular..." rows="3"
+              maxlength="500"></textarea>
           </div>
 
           <button type="submit" class="btn btn--submit btn--lg" id="submitBtn">
@@ -432,6 +349,66 @@
             </svg>
           </button>
         </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SOBRE MÍ -->
+  <!-- ============================================ -->
+  <section class="about" id="sobre-mi">
+    <div class="container about__inner">
+      <div class="about__image" data-animate>
+        <div class="about__image-wrapper">
+          <img src="assets/agustin-haag.jpg" alt="Agustín Haag - Visitador Médico y Asesor Comercial"
+            class="about__photo">
+        </div>
+      </div>
+      <div class="about__content" data-animate>
+        <span class="section-tag">Sobre mí</span>
+        <h2>Tu salud en manos de un profesional</h2>
+        <p class="about__text">Soy Agustín Haag, Visitador Médico y Asesor Comercial. Mi objetivo no es "venderte" un
+          plan, sino entender tu situación médica y económica para filtrarte las mejores opciones del mercado. Te
+          acompaño en todo el trámite administrativo para que no tengas que estresarte.</p>
+
+        <div class="about__features">
+          <div class="about__feature">
+            <div class="about__feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <div>
+              <strong>Asesoramiento gratuito</strong>
+              <span>Sin costo alguno para vos</span>
+            </div>
+          </div>
+          <div class="about__feature">
+            <div class="about__feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <div>
+              <strong>Acompañamiento personalizado</strong>
+              <span>Soluciones a tu medida</span>
+            </div>
+          </div>
+          <div class="about__feature">
+            <div class="about__feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <div>
+              <strong>Trámites sin estrés</strong>
+              <span>Yo me encargo de todo</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

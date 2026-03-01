@@ -90,12 +90,13 @@ function initFAQ() {
   });
 }
 
-/* --- Form Validation & WhatsApp --- */
+/* --- Form Validation & WhatsApp + Google Sheets --- */
 function initForm() {
   const form = document.getElementById('quoteForm');
+  const submitBtn = document.getElementById('submitBtn');
 
   // Real-time: clear error when user interacts with a field
-  form.querySelectorAll('input, select').forEach(field => {
+  form.querySelectorAll('input, select, textarea').forEach(field => {
     const event = field.tagName === 'SELECT' ? 'change' : 'input';
     field.addEventListener(event, () => {
       field.closest('.form-group').classList.remove('error');
@@ -108,15 +109,7 @@ function initForm() {
     whatsappInput.value = whatsappInput.value.replace(/[^0-9]/g, '');
   });
 
-  // Prevent negative and decimal in age field
-  const edadInput = document.getElementById('edad');
-  edadInput.addEventListener('input', () => {
-    let val = edadInput.value.replace(/[^0-9]/g, '');
-    if (val && parseInt(val) > 120) val = '120';
-    edadInput.value = val;
-  });
-
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Clear previous errors
@@ -126,16 +119,13 @@ function initForm() {
     const nombre = document.getElementById('nombre').value.trim();
     const email = document.getElementById('email').value.trim();
     const whatsapp = document.getElementById('whatsapp').value.trim();
-    const edad = document.getElementById('edad').value.trim();
-    const cobertura = document.getElementById('cobertura').value;
-    const condicion = document.getElementById('condicion').value;
     const interes = document.getElementById('interes').value;
+    const mensaje = document.getElementById('mensaje').value.trim();
 
-    // Validate
+    // Validate required fields
     let hasError = false;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneDigits = whatsapp.replace(/[^0-9]/g, '');
-    const edadNum = parseInt(edad, 10);
 
     if (!nombre || nombre.length < 2) {
       document.getElementById('nombre').closest('.form-group').classList.add('error');
@@ -149,25 +139,12 @@ function initForm() {
       document.getElementById('whatsapp').closest('.form-group').classList.add('error');
       hasError = true;
     }
-    if (!edad || isNaN(edadNum) || edadNum < 1 || edadNum > 120) {
-      document.getElementById('edad').closest('.form-group').classList.add('error');
-      hasError = true;
-    }
-    if (!cobertura) {
-      document.getElementById('cobertura').closest('.form-group').classList.add('error');
-      hasError = true;
-    }
-    if (!condicion) {
-      document.getElementById('condicion').closest('.form-group').classList.add('error');
-      hasError = true;
-    }
     if (!interes) {
       document.getElementById('interes').closest('.form-group').classList.add('error');
       hasError = true;
     }
 
     if (hasError) {
-      // Scroll to first error
       const firstError = form.querySelector('.form-group.error');
       if (firstError) {
         firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -175,44 +152,82 @@ function initForm() {
       return;
     }
 
-    // --- Send data to Google Sheets silently (placeholder) ---
-    sendToGoogleSheets({ nombre, email, whatsapp, edad, cobertura, condicion, interes });
+    // --- Show loading state on button ---
+    const originalBtnHTML = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+      <svg class="btn-spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <circle cx="12" cy="12" r="10" stroke-dasharray="60" stroke-dashoffset="20" />
+      </svg>
+      Enviando...
+    `;
+
+    // --- Send data to Google Sheets ---
+    const formData = { nombre, email, whatsapp, interes, mensaje };
+    await sendToGoogleSheets(formData);
+
+    // --- Show success state ---
+    submitBtn.innerHTML = `
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12" />
+      </svg>
+      ¡Datos enviados!
+    `;
+    submitBtn.classList.add('btn--success');
 
     // --- Open WhatsApp with pre-filled message ---
-    const message = encodeURIComponent(
-      `¡Hola Agustín! 👋\n\n` +
-      `Me gustaría cotizar una cobertura. Estos son mis datos:\n\n` +
-      `📋 *Nombre:* ${nombre}\n` +
-      `📧 *Email:* ${email}\n` +
-      `📱 *Celular:* ${whatsapp}\n` +
-      `🎂 *Edad:* ${edad} años\n` +
-      `👥 *Cobertura para:* ${cobertura}\n` +
-      `💼 *Condición laboral:* ${condicion}\n` +
-      `🔍 *Servicio de interés:* ${interes}\n\n` +
-      `¡Espero tu respuesta! 😊`
-    );
+    let messageParts = [
+      `¡Hola Agustín! 👋\n\n`,
+      `Me gustaría cotizar una cobertura. Estos son mis datos:\n\n`,
+      `📋 *Nombre:* ${nombre}\n`,
+      `📧 *Email:* ${email}\n`,
+      `📱 *Celular:* ${whatsapp}\n`,
+      `🔍 *Servicio de interés:* ${interes}\n`,
+    ];
 
-    // Agustín's WhatsApp number
+    if (mensaje) {
+      messageParts.push(`\n💬 *Mensaje:* ${mensaje}\n`);
+    }
+
+    messageParts.push(`\n¡Espero tu respuesta! 😊`);
+
+    const message = encodeURIComponent(messageParts.join(''));
     const agustinWhatsApp = '542916453357';
     const whatsappURL = `https://api.whatsapp.com/send?phone=${agustinWhatsApp}&text=${message}`;
 
     window.open(whatsappURL, '_blank');
+
+    // Reset form and button after a delay
+    setTimeout(() => {
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('btn--success');
+      submitBtn.innerHTML = originalBtnHTML;
+    }, 3000);
   });
 }
 
 /**
- * Sends form data to a Google Sheets endpoint silently.
- * Replace GOOGLE_SHEETS_ENDPOINT with your actual Apps Script Web App URL.
+ * Sends form data to a Google Sheets via Google Apps Script Web App.
+ * 
+ * SETUP INSTRUCTIONS:
+ * 1. Create a new Google Sheet
+ * 2. Go to Extensions > Apps Script
+ * 3. Paste the code from google-apps-script.js
+ * 4. Click Deploy > New deployment > Web app
+ *    - Execute as: Me
+ *    - Who has access: Anyone
+ * 5. Copy the Web App URL and paste it below
  */
 function sendToGoogleSheets(data) {
-  const GOOGLE_SHEETS_ENDPOINT = ''; // TODO: Add Google Apps Script URL
+  const GOOGLE_SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz8G2oyCl1IEMO-a-RQ43U5R8vQStLEpY7V0mlMaopMbiJfPGw94wG5J-lZ4IiVBKJu/exec';
 
   if (!GOOGLE_SHEETS_ENDPOINT) {
     console.log('[INFO] Google Sheets endpoint not configured. Data:', data);
-    return;
+    return Promise.resolve();
   }
 
-  fetch(GOOGLE_SHEETS_ENDPOINT, {
+  return fetch(GOOGLE_SHEETS_ENDPOINT, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
@@ -220,11 +235,9 @@ function sendToGoogleSheets(data) {
       nombre: data.nombre,
       email: data.email,
       whatsapp: data.whatsapp,
-      edad: data.edad,
-      cobertura: data.cobertura,
-      condicion: data.condicion,
       interes: data.interes,
-      fecha: new Date().toISOString(),
+      mensaje: data.mensaje || '',
+      fecha: new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' }),
     }),
   }).catch(err => {
     console.warn('[WARN] Error sending to Google Sheets:', err);

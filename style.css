@@ -880,6 +880,63 @@ h3 {
   border-color: #ef4444;
 }
 
+/* Textarea */
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  color: var(--text-900);
+  background: var(--bg-white);
+  transition: var(--transition);
+  outline: none;
+  resize: vertical;
+  min-height: 80px;
+  max-height: 200px;
+  font-family: var(--font);
+  line-height: 1.5;
+}
+
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(19, 182, 236, 0.1);
+}
+
+.form-group textarea::placeholder {
+  color: var(--text-300);
+}
+
+.form-group.error textarea {
+  border-color: #ef4444;
+}
+
+.label-optional {
+  font-weight: 400;
+  color: var(--text-300);
+  font-size: 0.8rem;
+}
+
+/* Button states */
+.btn--success {
+  background: var(--whatsapp) !important;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3) !important;
+}
+
+.btn-spinner {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 
 /* ============================================
    FAQ
