@@ -972,6 +972,41 @@ h3 {
 
 
 /* ============================================
+   SOCIAL MEDIA
+   ============================================ */
+.social {
+  padding: var(--section-py) 0;
+  background: var(--bg-50);
+}
+
+.social__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.social__embed {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  min-height: 520px;
+}
+
+.social__embed iframe {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+.social__embed blockquote {
+  margin: 0;
+}
+
+
+/* ============================================
    FAQ
    ============================================ */
 .faq {
@@ -1443,6 +1478,11 @@ h3 {
 
   .quote__inner {
     gap: 2rem;
+  }
+
+  /* Social */
+  .social__grid {
+    grid-template-columns: 1fr;
   }
 
   /* Footer */
