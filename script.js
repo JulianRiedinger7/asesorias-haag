@@ -90,7 +90,7 @@ function initFAQ() {
   });
 }
 
-/* --- Form Validation & WhatsApp + Google Sheets --- */
+/* --- Form Validation & Google Sheets --- */
 function initForm() {
   const form = document.getElementById('quoteForm');
   const submitBtn = document.getElementById('submitBtn');
@@ -119,7 +119,6 @@ function initForm() {
     const nombre = document.getElementById('nombre').value.trim();
     const email = document.getElementById('email').value.trim();
     const whatsapp = document.getElementById('whatsapp').value.trim();
-    const interes = document.getElementById('interes').value;
     const mensaje = document.getElementById('mensaje').value.trim();
 
     // Validate required fields
@@ -137,10 +136,6 @@ function initForm() {
     }
     if (!whatsapp || phoneDigits.length < 8) {
       document.getElementById('whatsapp').closest('.form-group').classList.add('error');
-      hasError = true;
-    }
-    if (!interes) {
-      document.getElementById('interes').closest('.form-group').classList.add('error');
       hasError = true;
     }
 
@@ -163,7 +158,7 @@ function initForm() {
     `;
 
     // --- Send data to Google Sheets ---
-    const formData = { nombre, email, whatsapp, interes, mensaje };
+    const formData = { nombre, email, whatsapp, mensaje };
     await sendToGoogleSheets(formData);
 
     // --- Show success state ---
@@ -171,39 +166,19 @@ function initForm() {
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="20 6 9 17 4 12" />
       </svg>
-      ¡Datos enviados!
+      ¡Consulta enviada!
     `;
     submitBtn.classList.add('btn--success');
 
-    // --- Open WhatsApp with pre-filled message ---
-    let messageParts = [
-      `¡Hola Agustín! 👋\n\n`,
-      `Me gustaría cotizar una cobertura. Estos son mis datos:\n\n`,
-      `📋 *Nombre:* ${nombre}\n`,
-      `📧 *Email:* ${email}\n`,
-      `📱 *Celular:* ${whatsapp}\n`,
-      `🔍 *Servicio de interés:* ${interes}\n`,
-    ];
+    // Clear form fields immediately
+    form.reset();
 
-    if (mensaje) {
-      messageParts.push(`\n💬 *Mensaje:* ${mensaje}\n`);
-    }
-
-    messageParts.push(`\n¡Espero tu respuesta! 😊`);
-
-    const message = encodeURIComponent(messageParts.join(''));
-    const agustinWhatsApp = '542916453357';
-    const whatsappURL = `https://api.whatsapp.com/send?phone=${agustinWhatsApp}&text=${message}`;
-
-    window.open(whatsappURL, '_blank');
-
-    // Reset form and button after a delay
+    // Reset button after a delay
     setTimeout(() => {
-      form.reset();
       submitBtn.disabled = false;
       submitBtn.classList.remove('btn--success');
       submitBtn.innerHTML = originalBtnHTML;
-    }, 3000);
+    }, 4000);
   });
 }
 
@@ -213,7 +188,7 @@ function initForm() {
  * SETUP INSTRUCTIONS:
  * 1. Create a new Google Sheet
  * 2. Go to Extensions > Apps Script
- * 3. Paste the code from google-apps-script.js
+ * 3. Paste the Apps Script code
  * 4. Click Deploy > New deployment > Web app
  *    - Execute as: Me
  *    - Who has access: Anyone
@@ -235,7 +210,6 @@ function sendToGoogleSheets(data) {
       nombre: data.nombre,
       email: data.email,
       whatsapp: data.whatsapp,
-      interes: data.interes,
       mensaje: data.mensaje || '',
       fecha: new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' }),
     }),
