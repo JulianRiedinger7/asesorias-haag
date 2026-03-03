@@ -247,17 +247,90 @@ function sendToGoogleSheets(data) {
 
 /* --- Scroll Animations (Intersection Observer) --- */
 function initScrollAnimations() {
-  const observer = new IntersectionObserver(
+  // General scroll-reveal observer
+  const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          revealObserver.unobserve(entry.target);
         }
       });
     },
     { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
   );
 
-  document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  document.querySelectorAll('[data-animate]').forEach(el => revealObserver.observe(el));
+
+  // --- Animated Number Counters ---
+  const counters = document.querySelectorAll('[data-count-target]');
+  if (counters.length === 0) return;
+
+  let countersAnimated = false;
+
+  const counterObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !countersAnimated) {
+          countersAnimated = true;
+          counters.forEach(counter => animateCounter(counter));
+          counterObserver.disconnect();
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  // Observe the stats container
+  const statsContainer = document.querySelector('.hero__stats');
+  if (statsContainer) {
+    counterObserver.observe(statsContainer);
+  }
+}
+
+/**
+ * Animates a number from 0 to data-count-target value.
+ * Supports data-count-prefix (e.g. "+") and data-count-suffix (e.g. "%").
+ */
+function animateCounter(el) {
+  const target = parseInt(el.dataset.countTarget, 10);
+  const prefix = el.dataset.countPrefix || '';
+  const suffix = el.dataset.countSuffix || '';
+
+  // Longer duration for bigger numbers, shorter for small ones
+  let duration;
+  if (target >= 500) {
+    duration = 2800;
+  } else if (target >= 100) {
+    duration = 2200;
+  } else {
+    duration = 1800;
+  }
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  // Small delay so the user sees "0" before counting starts
+  setTimeout(() => {
+    const startTime = performance.now();
+
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeOutCubic(progress);
+      const currentValue = Math.round(easedProgress * target);
+
+      el.textContent = `${prefix}${currentValue}${suffix}`;
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        el.textContent = `${prefix}${target}${suffix}`;
+        el.classList.add('counted');
+      }
+    }
+
+    requestAnimationFrame(update);
+  }, 800);
 }
