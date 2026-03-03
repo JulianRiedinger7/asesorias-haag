@@ -281,26 +281,14 @@ h3 {
 .navbar__logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   font-weight: 800;
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   color: var(--text-900);
+  letter-spacing: -0.02em;
 }
 
-.logo__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: var(--primary-gradient);
-  border-radius: var(--radius-md);
-  color: #fff;
-}
-
-.logo__icon svg {
-  width: 20px;
-  height: 20px;
+.logo__accent {
+  color: var(--primary);
 }
 
 .navbar__links {
