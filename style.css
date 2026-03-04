@@ -661,7 +661,7 @@ h3 {
    ABOUT
    ============================================ */
 .about {
-  padding: var(--section-py) 0;
+  padding: var(--section-py) 0 2.5rem;
   background: var(--bg-white);
 }
 
@@ -963,7 +963,7 @@ h3 {
    SOCIAL MEDIA
    ============================================ */
 .social {
-  padding: var(--section-py) 0;
+  padding: 2rem 0;
   background: var(--bg-50);
 }
 
@@ -998,7 +998,7 @@ h3 {
    FAQ
    ============================================ */
 .faq {
-  padding: var(--section-py) 0;
+  padding: 2.5rem 0 var(--section-py);
   background: var(--bg-50);
 }
 
