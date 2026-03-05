@@ -195,7 +195,7 @@ function initForm() {
  * 5. Copy the Web App URL and paste it below
  */
 function sendToGoogleSheets(data) {
-  const GOOGLE_SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz8G2oyCl1IEMO-a-RQ43U5R8vQStLEpY7V0mlMaopMbiJfPGw94wG5J-lZ4IiVBKJu/exec';
+  const GOOGLE_SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbySLxJUXzlemtbg3wrM4BO6poQAFYawlRvI1JeH-TAw0z3t9dw0FSBdHhlcL4FKVl-m/exec';
 
   if (!GOOGLE_SHEETS_ENDPOINT) {
     console.log('[INFO] Google Sheets endpoint not configured. Data:', data);
